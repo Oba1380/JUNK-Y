@@ -10,7 +10,6 @@ namespace Junky.Eventers
         [SerializeField] private UnityEvent<GameObject> _onTriggerExit;
         private void OnTriggerExit(Collider other)
         {
-            Debug.Log(other.gameObject);
             if (other.gameObject.IsInLayer(_layer))
             {
                 _onTriggerExit.Invoke(other.gameObject);

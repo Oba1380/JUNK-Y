@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,13 +27,13 @@ namespace Junky.Garden
             _plantedTiles++;
             if((float)_plantedTiles/_gardenTiles.Length*100 >= _percentForFullPlant)
             {
-                foreach (var tile in _gardenTiles)
+                for(int i = 0; i<_gardenTiles.Length; i++)
                 {
-                    tile.StartGrow();
+                    _gardenTiles[i].StartGrow();
                 }
 
                 _isFullPlanted = true;
-                foreach(var planter in _planters)
+                foreach(var planter in _planters.ToArray())
                 {
                     RemovePlanter(planter);
                 }

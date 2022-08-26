@@ -1846,7 +1846,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.91
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &578874021
 Transform:
@@ -1856,7 +1856,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578874019}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.59, y: 0.01, z: 0.94}
+  m_LocalPosition: {x: -0.59, y: 0.01, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1819506605}
@@ -3942,11 +3942,23 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 256
-  _onCollisionEnter:
+  _onTriggerExit:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1169400951}
+        m_TargetAssemblyTypeName: Junky.Garden.Garden, Assembly-CSharp
+        m_MethodName: TryRemovePlanter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1169400950}
-        m_TargetAssemblyTypeName: PeriodicallyEventer, Assembly-CSharp
+        m_TargetAssemblyTypeName: Junky.Eventers.PeriodicallyEventer, Assembly-CSharp
         m_MethodName: StopEvent
         m_Mode: 1
         m_Arguments:
@@ -3985,11 +3997,23 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 256
-  _onCollisionEnter:
+  _onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1169400951}
+        m_TargetAssemblyTypeName: Junky.Garden.Garden, Assembly-CSharp
+        m_MethodName: TryAddPlanter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1169400950}
-        m_TargetAssemblyTypeName: PeriodicallyEventer, Assembly-CSharp
+        m_TargetAssemblyTypeName: Junky.Eventers.PeriodicallyEventer, Assembly-CSharp
         m_MethodName: StartEvent
         m_Mode: 1
         m_Arguments:
@@ -5581,11 +5605,23 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 256
-  _onCollisionEnter:
+  _onTriggerEnter:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1492711529}
+        m_TargetAssemblyTypeName: Junky.Garden.Garden, Assembly-CSharp
+        m_MethodName: TryAddPlanter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1492711533}
-        m_TargetAssemblyTypeName: PeriodicallyEventer, Assembly-CSharp
+        m_TargetAssemblyTypeName: Junky.Eventers.PeriodicallyEventer, Assembly-CSharp
         m_MethodName: StartEvent
         m_Mode: 1
         m_Arguments:
@@ -5639,11 +5675,23 @@ MonoBehaviour:
   _layer:
     serializedVersion: 2
     m_Bits: 256
-  _onCollisionEnter:
+  _onTriggerExit:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1492711529}
+        m_TargetAssemblyTypeName: Junky.Garden.Garden, Assembly-CSharp
+        m_MethodName: TryRemovePlanter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1492711533}
-        m_TargetAssemblyTypeName: PeriodicallyEventer, Assembly-CSharp
+        m_TargetAssemblyTypeName: Junky.Eventers.PeriodicallyEventer, Assembly-CSharp
         m_MethodName: StopEvent
         m_Mode: 1
         m_Arguments:
@@ -6652,6 +6700,7 @@ Transform:
   m_Children:
   - {fileID: 1141656024}
   - {fileID: 578874021}
+  - {fileID: 1910340360}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 92.82}
@@ -6700,6 +6749,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1910340359}
+        m_TargetAssemblyTypeName: Junky.Spawner, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  IsOnGarden: 0
 --- !u!54 &1819506608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7023,6 +7085,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8149588494945720684, guid: 121e9b4b685259349a6221b1c22c0c97, type: 3}
   m_PrefabInstance: {fileID: 1213458405}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1910340358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1910340360}
+  - component: {fileID: 1910340359}
+  m_Layer: 8
+  m_Name: SmokeSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1910340359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910340358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b895dd416e3b94745bdcbe0ed54cbdcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefabToSpawn: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
+  _spawnPosition: {fileID: 1910340360}
+--- !u!4 &1910340360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910340358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.58, y: 0.03, z: 0.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1819506605}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1920645761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8149588494945720464, guid: 121e9b4b685259349a6221b1c22c0c97, type: 3}

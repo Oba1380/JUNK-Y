@@ -9,8 +9,10 @@ namespace Junky.Garden
         [SerializeField] private GardenTile[] _gardenTiles;
         [SerializeField] private Plant _plant;
         [Range(0,100)][SerializeField] private int _percentForFullPlant;
-        private int _plantedTiles;
 
+        private int _plantedTiles;
+        private bool _isFullPlanted;
+        private List<Planter> _planters = new List<Planter>(2);
         private void OnEnable()
         {
             foreach (var tile in _gardenTiles)
@@ -28,6 +30,12 @@ namespace Junky.Garden
                 {
                     tile.StartGrow();
                 }
+
+                _isFullPlanted = true;
+                foreach(var planter in _planters)
+                {
+                    RemovePlanter(planter);
+                }
             }
         }
         private void OnDisable()
@@ -36,6 +44,26 @@ namespace Junky.Garden
             {
                 tile.OnStartGrow -= TryToPlantAllTiles;
             }
+        }
+        public void TryAddPlanter(GameObject potentialPlanter)
+        {
+            if (_isFullPlanted) return;
+            var planter = potentialPlanter.GetComponent<Planter>();
+            if (planter == null) return;
+
+            _planters.Add(planter);
+            planter.IsOnGarden = true;
+        }
+        public void TryRemovePlanter(GameObject potentialPlanter)
+        {
+            var planter = potentialPlanter.GetComponent<Planter>();
+            if (planter == null) return;
+            RemovePlanter(planter);
+        }
+        private void RemovePlanter(Planter planter)
+        {
+            _planters.Remove(planter);
+            planter.IsOnGarden = false;
         }
     }
 }

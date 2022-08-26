@@ -29,7 +29,6 @@ namespace Junky
         }
         public void SpreadSpawn(float spread)
         {
-            Debug.Log(spread);
             for (int i = 0; i <5; i++)
             {
                 var randomPosition = new Vector3(Random.Range(-spread, spread), Random.Range(-spread, spread), 0);

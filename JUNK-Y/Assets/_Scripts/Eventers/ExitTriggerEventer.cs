@@ -7,13 +7,13 @@ namespace Junky.Eventers
     public class ExitTriggerEventer : MonoBehaviour
     {
         [SerializeField] private LayerMask _layer;
-        [SerializeField] private UnityEvent<Vector3> _onCollisionEnter;
+        [SerializeField] private UnityEvent<GameObject> _onTriggerExit;
         private void OnTriggerExit(Collider other)
         {
             Debug.Log(other.gameObject);
             if (other.gameObject.IsInLayer(_layer))
             {
-                _onCollisionEnter.Invoke(transform.position);
+                _onTriggerExit.Invoke(other.gameObject);
             }
         }
     }

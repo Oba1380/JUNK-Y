@@ -75,6 +75,18 @@ PrefabInstance:
       propertyPath: _firstStageTime
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1731837778305970496, guid: e9e457e26c86a644a8f1d3cc1230c175, type: 3}
+      propertyPath: _onHide.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731837778305970496, guid: e9e457e26c86a644a8f1d3cc1230c175, type: 3}
+      propertyPath: _onHide.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731837778305970496, guid: e9e457e26c86a644a8f1d3cc1230c175, type: 3}
+      propertyPath: _onHide.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1731837778305970499, guid: e9e457e26c86a644a8f1d3cc1230c175, type: 3}
       propertyPath: m_Name
       value: Flower1

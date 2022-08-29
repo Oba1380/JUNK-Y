@@ -13,6 +13,7 @@ namespace Junky.Garden
 
         private int _plantedTiles;
         private bool _isFullPlanted;
+
         private List<Planter> _planters = new List<Planter>(2);
         private void OnEnable()
         {
@@ -33,6 +34,7 @@ namespace Junky.Garden
                 }
 
                 _isFullPlanted = true;
+
                 foreach(var planter in _planters.ToArray())
                 {
                     RemovePlanter(planter);
@@ -49,22 +51,27 @@ namespace Junky.Garden
         public void TryAddPlanter(GameObject potentialPlanter)
         {
             if (_isFullPlanted) return;
+
             var planter = potentialPlanter.GetComponent<Planter>();
             if (planter == null) return;
 
             _planters.Add(planter);
+
             planter.IsOnGarden = true;
+            planter.TryStartPlantSeeds();
         }
         public void TryRemovePlanter(GameObject potentialPlanter)
         {
             var planter = potentialPlanter.GetComponent<Planter>();
             if (planter == null) return;
+
             RemovePlanter(planter);
         }
         private void RemovePlanter(Planter planter)
         {
             _planters.Remove(planter);
             planter.IsOnGarden = false;
+            planter.TryStopPlantSeeds();
         }
     }
 }

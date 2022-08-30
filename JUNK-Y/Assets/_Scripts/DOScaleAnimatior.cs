@@ -29,6 +29,12 @@ namespace Junky
             transform.localScale = Vector3.zero;
             ScaleAnimate(_scale + _bounciness, _scale, _firstStageTime, _secondStageTime,false);
         }
+        public void Show(Vector3 scale)
+        {
+            if (gameObject == null) return;
+            transform.localScale = Vector3.zero;
+            ScaleAnimate(scale, scale *(1+_bounciness), _firstStageTime, _secondStageTime, false);
+        }
         [ContextMenu("Hide")]
         public void Hide()
         {
@@ -36,6 +42,14 @@ namespace Junky
             ScaleAnimate(_scale + _bounciness, -0.2f, _secondStageTime, _firstStageTime,true);
         }
         private void ScaleAnimate(float firstScale, float secondScale, float firstStageTime, float secondStageTime, bool isHide)
+        {
+            var sequence = DOTween.Sequence();
+            sequence.
+                Append(transform.DOScale(firstScale, firstStageTime)).
+                Append(transform.DOScale(secondScale, secondStageTime)).
+                OnComplete(() => InvokeRightEvent(isHide));
+        }
+        private void ScaleAnimate(Vector3 firstScale, Vector3 secondScale, float firstStageTime, float secondStageTime, bool isHide)
         {
             var sequence = DOTween.Sequence();
             sequence.

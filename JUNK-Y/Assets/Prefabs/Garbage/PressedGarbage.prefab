@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5562779530061885219}
   - component: {fileID: 5562779530061885278}
   - component: {fileID: 5562779530061885277}
+  - component: {fileID: 7369137274558169841}
   - component: {fileID: 2160624022502159474}
   m_Layer: 7
   m_Name: PressedGarbage
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 5562779530061885220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.42904377, y: 1.34711, z: -3.56}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -161,6 +162,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7369137274558169841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562779530061885220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!114 &2160624022502159474
 MonoBehaviour:
   m_ObjectHideFlags: 0

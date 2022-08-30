@@ -30,7 +30,7 @@ namespace Junky.Garbage
             if(state == true)
             {
                 transform.localRotation = _quaternionOnPickUp;
-                _myAnimator.Show();
+                _myAnimator.Show(transform.lossyScale);
             }
             else
             {

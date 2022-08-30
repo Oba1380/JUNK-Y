@@ -7,7 +7,9 @@ namespace Junky.Garbage
     public class GarbageWarehouse : MonoBehaviour
     {
         [SerializeField] private int _maxCollectedGarbage;
+        [SerializeField] private float _indentBetweenGarbages;
         [SerializeField] private Transform _collectorPosition;
+        [SerializeField] private Vector3 _brickScale;
 
         private Stack<PressedGarbage> _collectedGarbage = new Stack<PressedGarbage>();
         private int _currentPoints;
@@ -25,13 +27,28 @@ namespace Junky.Garbage
         public Action<int, Transform> OnPointsChange;
         public void TakeGarbage(PressedGarbage garbage)
         {
-            if (_collectedGarbage.Count >= _maxCollectedGarbage ) return;
+            bool isTaked = false;
+            for (int i = 0; i < garbage.Points; i++)
+            {
+                if (CurrentPoints >= _maxCollectedGarbage)
+                {
+                    break;
+                }
 
+                var instantinatedGarbage = Instantiate(garbage,transform.position,Quaternion.identity);
+                instantinatedGarbage.transform.localScale = _brickScale;
 
-            PlaceGarbage(garbage);
-            _collectedGarbage.Push(garbage);
-            garbage.SetPickUpedState(true);
-            CurrentPoints += garbage.Points;
+                PlaceGarbage(instantinatedGarbage);
+                _collectedGarbage.Push(instantinatedGarbage);
+                instantinatedGarbage.SetPickUpedState(true);
+
+                isTaked = true;
+                CurrentPoints++;
+            }
+            if (isTaked)
+            {
+                Destroy(garbage.gameObject);
+            }
         }
         private void PlaceGarbage(PressedGarbage garbage)
         {
@@ -41,7 +58,7 @@ namespace Junky.Garbage
 
 
             var garbageScale = garbage.transform.lossyScale;
-            var spawnPositionY = lastGarbagePosition.y + garbageScale.y;
+            var spawnPositionY = lastGarbagePosition.y + garbageScale.y + _indentBetweenGarbages;
             var newPosition = new Vector3(
                 lastGarbagePosition.x,
                 spawnPositionY,
@@ -59,7 +76,7 @@ namespace Junky.Garbage
         {
             var lastCollectedGarbage = _collectedGarbage.Peek();
 
-            CurrentPoints -= lastCollectedGarbage.Points;
+            CurrentPoints--;
             lastCollectedGarbage.SetPickUpedState(false);
             _collectedGarbage.Pop();
         }

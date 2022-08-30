@@ -32,6 +32,10 @@ namespace Junky.Garbage
                 transform.localRotation = _quaternionOnPickUp;
                 _myAnimator.Show();
             }
+            else
+            {
+                _myAnimator.Hide();
+            }
         }
     }
 }

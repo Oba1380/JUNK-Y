@@ -39,7 +39,7 @@ namespace Junky
         public void Hide()
         {
             if (gameObject == null) return;
-            ScaleAnimate(_scale + _bounciness, -0.2f, _secondStageTime, _firstStageTime,true);
+            ScaleAnimate(_scale + _bounciness, 0, _secondStageTime, _firstStageTime,true);
         }
         private void ScaleAnimate(float firstScale, float secondScale, float firstStageTime, float secondStageTime, bool isHide)
         {

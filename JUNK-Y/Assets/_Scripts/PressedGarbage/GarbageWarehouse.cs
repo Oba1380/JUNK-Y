@@ -6,11 +6,11 @@ namespace Junky.Garbage
 {
     public class GarbageWarehouse : MonoBehaviour
     {
-        [SerializeField] private int _maxPoints;
+        [SerializeField] private int _maxCubes;
         [SerializeField] private int _pointsToSpawnPressedGarbage;
 
-        [SerializeField] private float _indentBetweenGarbagesVertical;
-        [SerializeField] private float _indentBetweenGarbagesHorisontal;
+        [SerializeField] private float _verticalIndentBetweenGarbages = 0.01f;
+        [SerializeField] private float _horizontalIndentBetweenGarbages = 0.3f;
 
         [SerializeField] private Transform _warehousePosition;
         [SerializeField] private PressedGarbage _pressedGarbage;
@@ -18,7 +18,7 @@ namespace Junky.Garbage
         private Stack<PressedGarbage> _collectedGarbage = new Stack<PressedGarbage>();
 
         private int _currentPoints;
-        private int _garbageCount;
+        private int _maxPoints;
         public Stack<PressedGarbage> CollectedGarbage => _collectedGarbage;
         public int CurrentPoints
         {
@@ -30,17 +30,33 @@ namespace Junky.Garbage
 
 
                 var lastGarbage = _collectedGarbage.Count > 0 ? _collectedGarbage.Peek().transform : _warehousePosition;
-                OnPointsChange.Invoke(_currentPoints, lastGarbage);
+                OnPointsChange.Invoke(_collectedGarbage.Count, lastGarbage);
+            }
+        }
+        public int MaxCubes
+        {
+            get => _maxCubes;
+            set 
+            {
+                _maxCubes = value;
+                _maxPoints = _maxCubes * _pointsToSpawnPressedGarbage;
             }
         }
         public Action<int, Transform> OnPointsChange;
+        private void Awake()
+        {
+            _maxPoints = _maxCubes * _pointsToSpawnPressedGarbage;
+        }
+        public int GetCubesCount()
+        {
+            return _collectedGarbage.Count;
+        }
         public void TakeGarbage(PressedGarbage garbage)
         {
             var pointsToAdd = garbage.Points;
             if (CurrentPoints != _maxPoints)
             {
                 Destroy(garbage.gameObject);
-                CurrentPoints += pointsToAdd;
             }
 
             var notUsedPoints = CurrentPoints -(_collectedGarbage.Count*_pointsToSpawnPressedGarbage);
@@ -49,6 +65,7 @@ namespace Junky.Garbage
             {
                 CreatePressedGarbage();
             }
+            CurrentPoints += pointsToAdd;
 
         }
         private void CreatePressedGarbage()
@@ -67,9 +84,9 @@ namespace Junky.Garbage
             else lastGarbagePosition = _collectedGarbage.Peek().transform.position;
 
             var garbageScale = garbage.transform.lossyScale;
-            var spawnPositionY = garbageScale.y + _indentBetweenGarbagesVertical;
+            var spawnPositionY = garbageScale.y + _verticalIndentBetweenGarbages;
             spawnPositionY = _collectedGarbage.Count % 2 == 1 ? 0 :  spawnPositionY;
-            var spawnPositionX = _collectedGarbage.Count % 2 == 1 ? _indentBetweenGarbagesHorisontal : -_indentBetweenGarbagesHorisontal;
+            var spawnPositionX = _collectedGarbage.Count % 2 == 1 ? _horizontalIndentBetweenGarbages : -_horizontalIndentBetweenGarbages;
 
             var newPosition = new Vector3(
                 lastGarbagePosition.x + spawnPositionX,
@@ -86,11 +103,19 @@ namespace Junky.Garbage
         [ContextMenu("Remove")]
         public void RemoveGarbage()
         {
-            CurrentPoints -= _pointsToSpawnPressedGarbage;
             if (_collectedGarbage.Count <= 0) return;
+
             var lastCollectedGarbage = _collectedGarbage.Peek();
             lastCollectedGarbage.SetPickUpedState(false);
             _collectedGarbage.Pop();
+            CurrentPoints -= _pointsToSpawnPressedGarbage;
+        }
+        public void RemoveGarbage(int count)
+        {
+            for(int i =0; i<count;i++)
+            {
+                RemoveGarbage();
+            }
         }
     }
 }

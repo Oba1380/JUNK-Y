@@ -20,7 +20,7 @@ namespace Junky.Garbage
         }
         private IEnumerator Collect(GarbageWarehouse garbageWarehouse)
         {
-            while(garbageWarehouse.CollectedGarbage.Count>0)
+            while(garbageWarehouse.CurrentPoints>0)
             {
                 garbageWarehouse.RemoveGarbage();
                 yield return new WaitForSeconds(_removeGarbageCooldownTime);
